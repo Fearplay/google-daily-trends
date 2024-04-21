@@ -23,7 +23,6 @@ class Utils(Trends):
 
     def start_of_the_script(self):
         self.haha()
-        self.datess()
         self.driver_close()
 
     def driver_close(self):
