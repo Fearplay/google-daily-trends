@@ -1,22 +1,24 @@
 import matplotlib.pyplot as plt
+import randomcolor
 
 
 class BarData:
     def __init__(self):
         pass
 
-    def visualize_data(self, first_list, second_list):
+    @staticmethod
+    def visualize_data(first_list, second_list):
         fig, ax = plt.subplots(figsize=(20, 10))
         fix_list = []
-        print(first_list)
-        print(second_list)
+        colors = []
+        for list_length in range(len(first_list)):
+            color = randomcolor.RandomColor().generate()
+            colors.append(color[0])
         for i in second_list:
             fix_list.append(int(i.split("+")[0]))
-        print(fix_list)
-        bar_labels = ['red', 'blue', '_red', 'orange']
-        ax.bar(first_list, fix_list, label=first_list)
+        ax.bar(first_list, fix_list, label=first_list, color=colors)
         ax.set_ylabel('search numbers')
-        ax.set_xlabel('search numberssas')
+        ax.set_xlabel('trend names')
         ax.set_title('Daily trends')
         ax.legend(title='Fruit color')
         plt.show()
