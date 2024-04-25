@@ -34,16 +34,18 @@ class Trends(BarData):
         self.driver.close()
         self.visualize_data(name_of_the_trends, numbers_of_the_trends)
 
-    def get_daily_trends(self, trend, count_number, list_with_today_trends):
+    @staticmethod
+    def get_daily_trends(trend, count_number, list_with_today_trends):
         if count_number < int(trend[0]):
             list_with_today_trends.append(trend)
-            print(trend)
             return True
         else:
             return False
 
-    def get_trend_name(self, trend, list_with_trend_names):
+    @staticmethod
+    def get_trend_name(trend, list_with_trend_names):
         return list_with_trend_names.append(trend[1])
 
-    def get_trend_search_number(self, trend, list_with_trend_numbers):
+    @staticmethod
+    def get_trend_search_number(trend, list_with_trend_numbers):
         return list_with_trend_numbers.append(trend[2])
