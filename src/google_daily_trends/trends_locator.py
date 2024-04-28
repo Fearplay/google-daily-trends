@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-from src.google_daily_trends.chart import BarData
+from src.google_daily_trends.bar_charts import BarData
 
 
 class Trends(BarData):
