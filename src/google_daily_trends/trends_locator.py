@@ -1,5 +1,4 @@
-import time
-
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,37 +12,61 @@ class Trends(BarData):
         self.element = self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.details-wrapper')))
         self.WARNING = '\033[93m'
         self.END_COLOR = '\033[0m'
+        self.name_of_the_trends = []
+        self.numbers_of_the_trends = []
+        self.urls_of_the_trends = []
+        self.list_with_trends = []
+        self.today_trends = []
+        self.duplicate_trends_list = []
+        self.position_number = 0
+
+    @staticmethod
+    def split_trend_views(trend):
+        trend.pop(-1)
+        if "tis" in trend[-1]:
+            trend[-1] = trend[-1].split(' ')
+            trend[-1] = trend[-1][0].replace(trend[-1][0], f'{trend[-1][0]}000+')
+        elif "mil" in trend[-1]:
+            trend[-1] = trend[-1].split(' ')
+            trend[-1] = trend[-1][0].replace(trend[-1][0], f'{trend[-1][0]}000000+')
+
+    def get_trends(self, trend):
+        self.get_trend_name(trend, self.name_of_the_trends)
+        self.get_trend_search_number(trend, self.numbers_of_the_trends)
+        self.position_number += 1
+
+    def trend_if_not_timeout_error(self):
+        for trend in self.list_with_trends:
+            if not self.get_daily_trends(trend, self.position_number, self.today_trends):
+                break
+            self.get_trend_event_info(trend, self.urls_of_the_trends)
+            self.split_trend_views(trend)
+            self.duplicate_trends_list.append(trend)
+            self.get_trends(trend)
+        self.driver.quit()
+        self.visualize_data_with_urls(self.name_of_the_trends, self.numbers_of_the_trends, self.urls_of_the_trends)
+
+    def trend_if_timeout_error(self):
+        for trend in self.list_with_trends:
+            if trend not in self.duplicate_trends_list:
+                if not self.get_daily_trends(trend, self.position_number, self.today_trends):
+                    break
+                self.split_trend_views(trend)
+                self.get_trends(trend)
+        self.driver.quit()
+        self.visualize_data_without_urls(self.name_of_the_trends, self.numbers_of_the_trends)
 
     def fill_trends(self):
-        position_number = 0
-        list_with_trends = []
-        today_trends = []
-        name_of_the_trends = []
-        numbers_of_the_trends = []
-        urls_of_the_trends = []
-
-        for ele in self.element:
-            list_with_trends.append(ele.text.split('\n'))
-        for trend in list_with_trends:
-            trend.pop(-1)
-            if "tis" in trend[-1]:
-                trend[-1] = trend[-1].split(' ')
-                trend[-1] = trend[-1][0].replace(trend[-1][0], f'{trend[-1][0]}000+')
-            elif "mil" in trend[-1]:
-                trend[-1] = trend[-1].split(' ')
-                trend[-1] = trend[-1][0].replace(trend[-1][0], f'{trend[-1][0]}000000+')
-            if not self.get_daily_trends(trend, position_number, today_trends):
-                break
-            self.get_trend_name(trend, name_of_the_trends)
-            self.get_trend_search_number(trend, numbers_of_the_trends)
-            self.get_trend_event_info(trend, urls_of_the_trends)
-            position_number += 1
-        self.driver.quit()
-        self.visualize_data(name_of_the_trends, numbers_of_the_trends, urls_of_the_trends)
+        try:
+            for ele in self.element:
+                self.list_with_trends.append(ele.text.split('\n'))
+            self.trend_if_not_timeout_error()
+        except TimeoutException:
+            self.trend_if_timeout_error()
 
     @staticmethod
     def get_daily_trends(trend, count_number, list_with_today_trends):
-        if count_number < int(trend[0]):
+        if count_number < int(trend[0]) and count_number < 10:
             list_with_today_trends.append(trend)
             return True
         else:
@@ -55,7 +78,7 @@ class Trends(BarData):
 
     @staticmethod
     def get_trend_search_number(trend, list_with_trend_numbers):
-        return list_with_trend_numbers.append(trend[2])
+        return list_with_trend_numbers.append(trend[-1])
 
     def get_trend_event_info(self, trend, list_with_trend_info):
         print(f'{self.WARNING}Please wait generating info about events!{self.END_COLOR}')

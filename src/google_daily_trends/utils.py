@@ -14,15 +14,16 @@ class Utils(Trends):
     def __init__(self):
 
         self.chrome_options = webdriver.ChromeOptions()
-        self.chrome_options.add_argument('headless')
+        # self.chrome_options.add_argument('headless')
         self.chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.get_location())
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 3)
         Trends.__init__(self)
 
-    def get_location(self):
-        url = 'http://ipinfo.io/json'
+    @staticmethod
+    def get_location():
+        url = 'https://ipinfo.io/json'
         response = requests.get(url)
         data = json.loads(response.text)
         country_code = data['country']
@@ -35,6 +36,7 @@ class Utils(Trends):
         self.driver.close()
 
     def wait_for_element(self, located_by, path, clickable=None, send_text=None, clearable=None, wait_time=None):
+
         force_click_element = self.wait.until(EC.presence_of_element_located((located_by, path)))
         try:
             unhidden_element = self.wait.until(EC.presence_of_element_located((located_by, path)))
@@ -56,7 +58,7 @@ class Utils(Trends):
             self.driver.execute_script("arguments[0].click();", force_click_element)
 
     @staticmethod
-    def is_element_present(web_driver, located_by, path, timeout=3):
+    def is_element_present(web_driver, located_by, path, timeout=2):
         try:
             WebDriverWait(web_driver, timeout).until(EC.presence_of_element_located((located_by, path)))
             return True
