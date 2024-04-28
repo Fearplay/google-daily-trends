@@ -1,7 +1,7 @@
 import json
 import time
-
 import requests
+
 from selenium import webdriver
 from selenium.common import WebDriverException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
