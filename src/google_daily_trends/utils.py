@@ -14,11 +14,11 @@ class Utils(Trends):
     def __init__(self):
 
         self.chrome_options = webdriver.ChromeOptions()
-        # self.chrome_options.add_argument('headless')
+        self.chrome_options.add_argument('headless')
         self.chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.get_location())
-        self.wait = WebDriverWait(self.driver, 3)
+        self.wait = WebDriverWait(self.driver, 5)
         Trends.__init__(self)
 
     @staticmethod
