@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,8 +10,7 @@ from src.google_daily_trends.bar_charts import BarData
 class Trends(BarData):
     def __init__(self):
         BarData.__init__(self)
-        self.element = self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.details-wrapper.no-news')))
-        self.date = self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.content-header-title')))
+        self.element = self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.details-wrapper')))
         self.WARNING = '\033[93m'
         self.END_COLOR = '\033[0m'
 
@@ -20,6 +21,7 @@ class Trends(BarData):
         name_of_the_trends = []
         numbers_of_the_trends = []
         urls_of_the_trends = []
+
         for ele in self.element:
             list_with_trends.append(ele.text.split('\n'))
         for trend in list_with_trends:
