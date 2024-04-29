@@ -26,8 +26,7 @@ Get daily search trends from the Google
 ## General
 
 * Just start this project, and it will show you Google search trends in your country. Also click on the bar
- will open up a browser and tell you what happened.
-
+  will open up a browser and tell you what happened.
 
 ## Other
 
