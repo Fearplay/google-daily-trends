@@ -12,8 +12,11 @@ Get daily search trends from the Google
 ## Screenshot
 
 * **USA Trends**
+
   ![screenshot](../screenshots/usa_trends.png)
+
 * **Canada Trends**
+
   ![screenshot](../screenshots/canada_trends.png)
 
 ## Requirements
