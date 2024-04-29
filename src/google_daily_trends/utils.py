@@ -12,7 +12,6 @@ from src.google_daily_trends.trends_locator import Trends
 
 class Utils(Trends):
     def __init__(self):
-
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('headless')
         self.chrome_options.add_argument('--disable-gpu')
@@ -36,7 +35,6 @@ class Utils(Trends):
         self.driver.close()
 
     def wait_for_element(self, located_by, path, clickable=None, send_text=None, clearable=None, wait_time=None):
-
         force_click_element = self.wait.until(EC.presence_of_element_located((located_by, path)))
         try:
             unhidden_element = self.wait.until(EC.presence_of_element_located((located_by, path)))
