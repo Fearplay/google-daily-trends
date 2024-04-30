@@ -26,7 +26,7 @@ class Utils(Trends):
         response = requests.get(url)
         data = json.loads(response.text)
         country_code = data['country']
-        return f"https://trends.google.com/trends/trendingsearches/daily?geo=CA&hl=cs"
+        return f"https://trends.google.com/trends/trendingsearches/daily?geo={country_code}&hl=cs"
 
     def start_of_the_script(self):
         self.fill_trends()
