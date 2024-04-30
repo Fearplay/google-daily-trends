@@ -1,4 +1,4 @@
-# google_daily_trends
+# google-daily-trends
 
 Get daily search trends from the Google
 
@@ -34,9 +34,9 @@ Get daily search trends from the Google
 ## Other
 
 * If you find any issue, please don't hesitate to report it
-  via [Issues](https://github.com/Fearplay/google_daily_trends/issues)
+  via [Issues](https://github.com/Fearplay/google-daily-trends/issues)
 * If you have an idea to improve this game, please don't hesitate to create pull request
-  via [Pull requests](https://github.com/Fearplay/google_daily_trends/pulls)
+  via [Pull requests](https://github.com/Fearplay/google-daily-trends/pulls)
 * Thanks to all :green_heart:
 
-[Back to TOP](#google_daily_trends)
+[Back to TOP](#google-daily-trends)
