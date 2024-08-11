@@ -3,6 +3,7 @@ import randomcolor
 import webbrowser
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mat_ticker
 
 
 class BarData:
@@ -22,7 +23,9 @@ class BarData:
             color = randomcolor.RandomColor().generate()
             self.colors.append(color[0])
         for i in second_list:
+            print(i)
             self.fix_list.append(int(i.split("+")[0]))
+            print(self.fix_list)
 
     def set_the_parameters(self):
         self.ax.set_ylabel('search numbers')
@@ -31,6 +34,7 @@ class BarData:
         self.ax.set_xticklabels([])
         self.ax.set_title('Daily trends')
         self.ax.legend(title='Trend Names')
+        self.ax.yaxis.set_major_formatter(mat_ticker.StrMethodFormatter('{x:,.0f}'))
         plt.show()
 
     def visualize_data_with_urls(self, first_list, second_list, third_list):
