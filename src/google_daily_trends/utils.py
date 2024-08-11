@@ -13,7 +13,7 @@ from src.google_daily_trends.trends_locator import Trends
 class Utils(Trends):
     def __init__(self):
         self.chrome_options = webdriver.ChromeOptions()
-        self.chrome_options.add_argument('headless')
+        # self.chrome_options.add_argument('headless')
         self.chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.get_location())
@@ -26,7 +26,7 @@ class Utils(Trends):
         response = requests.get(url)
         data = json.loads(response.text)
         country_code = data['country']
-        return f"https://trends.google.com/trends/trendingsearches/daily?geo={country_code}&hl=cs"
+        return f"https://trends.google.com/trending?geo={country_code}&hl=cs&sort=search-volume"
 
     def start_of_the_script(self):
         self.fill_trends()
