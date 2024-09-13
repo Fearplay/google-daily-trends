@@ -23,9 +23,7 @@ class BarData:
             color = randomcolor.RandomColor().generate()
             self.colors.append(color[0])
         for i in second_list:
-            print(i)
             self.fix_list.append(int(i.split("+")[0]))
-            print(self.fix_list)
 
     def set_the_parameters(self):
         self.ax.set_ylabel('search numbers')

@@ -29,12 +29,10 @@ class Trends(BarData):
         for trend in self.watcher:
             splitter_of_the_views = re.split('[ .+]+', trend)
             splitter_of_the_views.pop(-1)
-            print(splitter_of_the_views)
             if "tis" in splitter_of_the_views[-1]:
                 splitter_of_the_views = splitter_of_the_views[0] + splitter_of_the_views[-1].replace(splitter_of_the_views[-1], f'000+')
             elif "mil" in splitter_of_the_views[-1]:
                 splitter_of_the_views = splitter_of_the_views[0] + splitter_of_the_views[-1].replace(splitter_of_the_views[-1], f'000000+')
-                print(splitter_of_the_views)
             else:
                 splitter_of_the_views = splitter_of_the_views[0] + "+"
             self.numbers_of_the_trends.append(splitter_of_the_views)
