@@ -15,6 +15,8 @@ class Utils(Trends):
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument('headless')
         self.chrome_options.add_argument('--disable-gpu')
+        self.chrome_options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36')
+        self.chrome_options.add_argument('--disable-blink-features=AutomationControlled')
         self.driver = webdriver.Chrome(options=self.chrome_options)
         self.driver.get(self.get_location())
         self.wait = WebDriverWait(self.driver, 5)
