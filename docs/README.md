@@ -2,6 +2,7 @@
 
 Get daily search trends from the Google
 
+
 ## Index
 
 - [Screenshot](#screenshot)
@@ -28,8 +29,11 @@ Get daily search trends from the Google
 
 ## General
 
+* This script is intended for **educational** and **demonstration** purposes **only**.
 * Just start this project, and it will show you Google search trends in your country. Also click on the bar
   will open up a browser and tell you what happened.
+* Make sure that in your IDE option **Show plots in tool window** is disabled.
+
 
 ## Other
 
