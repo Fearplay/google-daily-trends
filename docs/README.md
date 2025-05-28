@@ -39,7 +39,7 @@ Get daily search trends from the Google
 
 * If you find any issue, please don't hesitate to report it
   via [Issues](https://github.com/Fearplay/google-daily-trends/issues)
-* If you have an idea to improve this game, please don't hesitate to create pull request
+* If you have an idea to improve this app, please don't hesitate to create pull request
   via [Pull requests](https://github.com/Fearplay/google-daily-trends/pulls)
 * Thanks to all :green_heart:
 
